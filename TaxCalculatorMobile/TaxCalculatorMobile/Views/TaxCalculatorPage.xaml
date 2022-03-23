@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:views="clr-namespace:TaxCalculatorMobile.Views"
+             x:Class="TaxCalculatorMobile.Views.TaxCalculatorPage"
+             ios:Page.UseSafeArea="true"
+             BindingContext="{Binding Path=TaxCalculatorVm, Source={StaticResource ViewModelLocator}}"
+             x:Name="TaxCalculatorContentPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="15, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Tax Calculator"
+                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       HorizontalOptions="Center"
+                       FontSize="Large"/>
+
+                <Label Text="Order Total $"
+                       Grid.Row="1" Grid.Column="0"
+                       FontSize="Medium"/>
+                <Entry Text="{Binding OrderTotal}"
+                       Grid.Row="1" Grid.Column="1"
+                       HorizontalTextAlignment="Center"
+                       Keyboard="Numeric"
+                       HorizontalOptions="Fill"/>
+                
+                <Label Text="Shipping Cost $    "
+                       Grid.Row="2" Grid.Column="0"
+                       FontSize="Medium"/>
+                <Entry Text="{Binding ShippingCost}"
+                       Grid.Row="2" Grid.Column="1"
+                       HorizontalTextAlignment="Center"
+                       Keyboard="Numeric"
+                       HorizontalOptions="Fill"/>
+
+                <Label Text="Where is the order coming from?"
+                       Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Start"
+                       FontSize="Large"
+                       Margin="0, 15"/>
+
+                <Label Text="*State"
+                       Grid.Row="4" Grid.Column="0"
+                       FontSize="Medium"/>
+                <Picker Title="Select State" 
+                        Grid.Row="4" Grid.Column="1"
+                        HorizontalTextAlignment="Center"
+                        SelectedItem="{Binding FromState}"
+                        ItemsSource="{Binding StatesList}"/>
+                
+                <Label Text="*Zipcode"
+                       Grid.Row="5" Grid.Column="0"
+                       FontSize="Medium"/>
+                <Entry Text="{Binding FromZip}"
+                       Grid.Row="5" Grid.Column="1"
+                       Placeholder="e.g. 10004"
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Fill"/>
+
+
+                <Label Text="Where is the order going?"
+                       Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Start"
+                       FontSize="Large"
+                       Margin="0, 15"/>
+                
+                <Label Text="*State"
+                       Grid.Row="7" Grid.Column="0"
+                       FontSize="Medium"/>
+                <Picker Title="Select State" 
+                        Grid.Row="7" Grid.Column="1"
+                        HorizontalTextAlignment="Center"
+                        SelectedItem="{Binding ToState}"
+                        ItemsSource="{Binding StatesList}"/>
+                
+                <Label Text="*Zipcode"
+                       Grid.Row="8" Grid.Column="0"
+                       FontSize="Medium"/>
+                <Entry Text="{Binding ToZip}"
+                       Grid.Row="8" Grid.Column="1"
+                       Keyboard="Numeric"
+                       Placeholder="e.g. 10004"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Fill"/>
+
+                <Button Text="Calculate"
+                        Command="{Binding CalculateCommand}"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                        BackgroundColor="Blue"
+                        TextColor="White"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="0,0,0,10"
+                        />
+
+                <Label Text="Tax to collect: "
+                       Grid.Row="10" Grid.Column="0"
+                       VerticalOptions="Center"
+                       FontSize="Large"
+                       FontAttributes="Bold"/>
+                <Label Text="{Binding TaxOwedString}"
+                       Grid.Row="10" Grid.Column="1"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       IsVisible="{Binding IsTaxCalculated}"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
